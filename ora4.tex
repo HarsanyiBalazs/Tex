@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage[magyar]{babel}
+\usepackage{t1enc}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{hulipsum}
+\usepackage{listings}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+
+
+\newfloat{forráskód}{hbt}{vla}
+
+\theoremstyle{plain}
+\newtheorem{tet}{Tétel}
+
+\theoremstyle{definition}
+\newtheorem{defin}{Definíció}
+
+\theoremstyle{plain}
+\newtheorem{lem}[tet]{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{fela}{Feladat}[section]
+
+\newtheorem*{megj}{Megjegyzés}
+
+\floatname{algorithm}{algoritmus}
+\renewcommand{\lstlistingname}{pszeudokód}
+\renewcommand{\lstlistlistingname}{pszeudokódok}
+
+
+\algblockdefx[dowhile]{Do}{While}{\textbf{Do}}[1]{\textbf{While}~#1}
+\algblockdefx[switch]{Switch}{Default}[1]{\textbf{Switch}~#1}[1]{\textbf{Default}~#1}
+\algcblockdefx[switch]{switch}{Case}{Default}[1]{\textbf{Case}~#1}[1]{\textbf{Default}~#1}
+
+
+\begin{document}
+
+\listof{forráskód}{forrásódok}
+\lstlistoflistings
+\listof{algorithm}{algoritmusok}
+\vspace{2cm}
+
+\begin{tet}
+szöveg
+\end{tet}
+\begin{proof}[írás bizonyítás]
+egyértelműen ez nem egy szöveg hanem egy szó
+\end{proof}
+
+\begin{megj}
+megjegyzés
+\end{megj}
+
+\begin{defin}
+szöveg 2
+\end{defin}
+
+\section{szekció1}
+
+\begin{fela}
+falafel 1
+\end{fela}
+
+\begin{fela}
+falafel 2
+\end{fela}
+
+\section{szekció2}
+
+\begin{tet}
+szöveg 3
+\end{tet}
+
+\begin{lem}
+írás
+\end{lem}
+
+\begin{defin}
+szöveg  4 \verb|\pagestyle{fancy}|
+\end{defin}
+
+\begin{fela}
+falafel 3 \verb|\footnote{mi az}|
+\end{fela}
+
+\begin{forráskód} \caption{forráskód1}
+
+ez szöveggel lesz egy sorban  \verb|\section{nincs is}|
+\end{forráskód}
+
+\begin{forráskód} \caption{forráskód2}
+
+\begin{verbatim}
+\begin{itemize}
+\item \verb|\section{nincs is}|
+\item 2
+\end{itemize}
+\end{verbatim}
+\end{forráskód}
+
+\hulipsum[3-4]
+
+
+\begin{lstlisting}[float=t,caption={keresések vagy mi},frame=Ltb,numbers=left,stepnumber=4,tabsize=2,language=python]
+def binary_search(arr, val, start, end):
+	if start == end:
+		if arr[start] > val:
+			return start
+		else:
+			return start+1
+	elif start > end:
+		return start
+	else: 
+		mid = (start+end)/2
+		if arr[mid] < val:
+			return binary_search(arr, val, mid+1, end)
+		elif arr[mid] > val:
+			return binary_search(arr, val, start, mid-1)
+		else: # arr[mid] = val
+			return mid
+			
+def insertion_sort(arr):
+    for i in xrange(1, len(arr)):
+        val = arr[i]
+        j = binary_search(arr, val, 0, i-1)
+        arr = arr[:j] + [val] + arr[j:i] + arr[i+1:]
+    return arr
+\end{lstlisting}
+
+
+\begin{algorithm} \caption{pszeudokód}
+\begin{algorithmic}[2]
+\Procedure{Gyorsrendezés}{@A,a,b}
+\Require A()
+\Require a,b
+\State\Ensure a<b indextartományt rendezzük
+\If{(a=b)}
+\State return A
+\Else
+\State\Call{Feloszt}{@A,a,b,A(a),@q}
+\State\Call{Quicksort}{@A,a,q}
+\State\Call{Quicksort}{@A,a+1,q}
+\State return A
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithmic}
+\Do
+\State x =1
+\While x<5
+\Switch 55
+\Case x=5
+\State 42
+\Case x=2
+\Default 32
+
+\end{algorithmic}
+\end{document}
