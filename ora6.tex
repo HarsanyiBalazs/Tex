@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[magyar]{babel}
+\usepackage{t1enc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+
+\usepackage{hyperref}
+\begin{document}
+Az $\frac{1}{n^2}$ sorösszege:
+\[\sum_{n=1}^\infty \frac{1}{n^2}=\frac{\pi^2}{6}\]
+Az $n!$ (n faktoriális) a számok szorzata 1-től n-ig, azaz
+\begin{gather}
+n!:=\prod_{k=1}^{n}k=1\cdot 2\cdot ...\cdot n.
+\end{gather}
+Konvenció szerint 0! = 1.\\
+Legyen $0 \leq k \leq n$. A binomiális együttható
+\[\binom{n}{k}:=\frac{n!}{k!\cdot (n-k)!}\]
+ahol a faktoriálist (1) szerint definiáljuk.\\
+Az előjel- azaz szignum függvényt a következőképpen definiáljuk.
+\[sgn(x):=
+\begin{cases}
+1, & \text{ha } x>0, \\
+0, & \text{ha } x=0, \\
+-1, & \text{ha } x<0.
+\end{cases}
+\]
+
+Legyen
+\[[n] := \{1,2,\cdots,n\} \]
+a természetes számok halmaza $1$-től $n$-ig. \\
+Egy $n$-edrendű permutáció $\sigma$ egy bijekció $[n]$-ből $[n]$-be. Az $[n]$-edrendű per-\\
+mutációk halmazát, az ún. szimmetrikus csoportot, $S_{n}$-nel jelöljük.\\
+Egy $\sigma \in S_{n}$ permutációban inverziónak nevezünk egy $(i,j)$ párt, ha $i < j$\\
+de $\sigma_{i} > \sigma_{j}$.\\
+Egy $\sigma \in S_{n}$ permutáció paritásának az inverziók számát nevezzük:\\
+\[\mathcal{I}(\sigma):= \Bigr|\bigr\{ (i,j)\bigr|i,j \in [n],i<j,\sigma_i > \sigma_j \bigr\}\Bigr|.\]
+Legyen $A \in \mathbb{R}^{n\times n}$ egy $n \times n$-es (négyzetes) valós mátrix:
+\[A =\left( \begin{matrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}\\
+\end{matrix}\right)\]
+Az $A$ mátrix determinánsát a következőképpen definiáljuk:
+\begin{gather}det(A) = \begin{vmatrix*}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}\\
+\end{vmatrix*}:= \sum_{\sigma \in S_n} (-1)^{\mathcal{I}(\sigma)} \prod_{i=1}^n a_{i\sigma_i}\end{gather}
+\smallbreak Tekintsük az $L={0,1}$ halmazt, és rajta a következő, igazságtáblával definiált műveleteket:\\
+\[
+\begin{tabular}{c||c}
+$x$ & $\overline{x}$ \\ \hline
+0 & 1 \\
+1 & 0 \\
+\end{tabular} \hspace{20pt}
+\begin{tabular}{cc||c|c|c}
+x & y & $x\vee y$ & $x\wedge y$ & $x\rightarrow y$ \\ \hline
+0 & 0 & 0 & 0 & 1 \\
+0 & 1 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 & 0 \\
+1 & 1 & 1 & 1 & 1 \\
+
+\end{tabular}
+\]\\
+Legyenek $a,b,c,d \in L $. Belátjuk a következő azonosságot:
+\begin{gather}\label{harmas}
+(a\wedge b\wedge c)\rightarrow d = a \rightarrow \bigr(b\rightarrow (c\rightarrow d)\bigr).
+\end{gather}
+A következő azonosságot bizonyítás nélkül használjuk:
+
+\begin{subequations}\label{negyes}
+\begin{equation}\label{negyesegy}
+x\rightarrow y = \overline{x} \vee y
+\end{equation}
+\begin{equation}\label{negyesketto}
+\overline{x\vee y} = \overline{x} \wedge \overline{y} \hspace{20pt} \overline{x\wedge y} = \overline{x} \vee \overline{y}
+\end{equation}
+\end{subequations}\\
+
+A (\ref{harmas}) bal oldala, a (\ref{negyes}) felhasználásával
+\begin{gather} \label{otos}
+(a\wedge b \wedge c)\rightarrow d \underset{\ref{negyesegy}}{=} \overline{a\wedge b \wedge c}\vee d \underset{\ref{negyesketto}}{=} (\overline{a}\vee \overline{b} \vee \overline{c}) \vee d.
+\end{gather}
+A (\ref{harmas}) jobb oldala, (\ref{negyesegy}) ismételt felhasználásával
+\begin{align} \nonumber
+a\rightarrow \bigr( b\rightarrow (c\rightarrow d)\bigr) & = \overline{a} \vee \bigr(b \rightarrow (c \rightarrow d)\bigr)\\
+&=\overline{a} \vee \bigr(\overline{b} \vee (c \rightarrow d)\bigr) \\ \nonumber
+&=\overline{a} \vee \bigr(\overline{b} \vee (\overline{c} \vee d)\bigr),
+\end{align}
+ami a $\vee$ asszociativitása miatt egyenlő (\ref{otos}) egyenlettel.\\
+
+\begin{subequations}
+\begin{align}
+(a+b)^{n+1} & = (a+b) \cdot \left( \sum_{k=0}^n \binom{n}{k} a^{n-k}b^k \right) \\ \nonumber
+& =\cdots \\
+& = \sum_{k=0}^n \binom{n}{k} a^{(n+1)-k}b^k + \sum_{k=1}^{n+1} \binom{n}{k-1} a^{(n+1)-k}b^{k}\\ \nonumber
+& =\cdots\\
+\begin{split}
+& = \binom{n+1}{0} a^{n+1-0} b^0 + \sum_{k=1}^n \binom{n+1}{k} a^{(n+1)-k}b^k \\ & + \binom{n+1}{n+1} a^{n+1-(n+1)} b^{n+1}
+\end{split} \\
+& = \sum_{k=0}^{n+1} \binom{n+1}{k} a^{(n+1)-k}b^k
+\end{align}
+\end{subequations}
+
+
+\end{document}
