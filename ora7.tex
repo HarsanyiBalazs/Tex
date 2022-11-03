@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage[magyar]{babel}
+\usepackage{t1enc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{hulipsum}
+\usepackage{array}
+\usepackage{ifthen}
+
+\newcounter{kulcsok}[section]
+\newlength{\szamjegyek}
+\settowidth{\szamjegyek}{456}
+
+\DeclareMathOperator{\argmax}{arg\,max}
+\DeclarePairedDelimiter{\felso}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\szoges}{[}{]}
+\newcommand{\varhato}[1]{\mathbb{E}\szoges*{#1}}
+\DeclarePairedDelimiterX{\szogesfelt}[2]{[}{]}{#1\;\delimsize\vert\;#2}
+\newcommand{\feltvarhato}[2]{\mathbb{E}~\szogesfelt*{#1}{#2}}
+
+\newenvironment{kulcs}[1][Kulcsgondolatok]{\vspace{4pt}\hrule\vspace{4pt}\begin{minipage}{0.8\linewidth}\begin{center}\textbf{#1}\end{center}%
+\newcommand{\kgitem}[1]{\stepcounter{kulcsok}\thekulcsok \\ \noindent \makebox[\szamjegyek][l]{##1}}}%
+{\end{minipage}\vspace{4pt}\hrule\vspace{4pt}}
+
+
+
+\begin{document}
+
+\[x^* := \underset{x\in [0,1]}{\argmax} ~x ~\log_{2}(x) \]
+
+$\felso{x},\felso*{\frac{5}{3}}$\\
+\\
+$\varhato{\sum\limits_{i=1}^N X_i}=\varhato{\feltvarhato{\sum\limits_{i=1}^N X_i}{N}}	$
+
+\begin{kulcs}[A cím]
+\hulipsum[1]
+\kgitem{valami}
+\end{kulcs}
+
+\thekulcsok\\
+
+\vspace{3pt}
+
+
+\rowcolors{1}{}{black}
+\begin{tabular}{>{\ifthenelse{\isodd{\value{rownum}}}{}{\color{white}}}l%
+>{\ifthenelse{\isodd{\value{rownum}}}{}{\color{white}}}l}
+elso & masodik \\
+harmadik & negyedik \\
+otodik & hatodik \\
+hetedik & nyolcadik\\
+kilencedik & tizedik\\
+\end{tabular}
+
+
+\end{document}
