@@ -1,0 +1,141 @@
+\documentclass[aspectratio=169,bigger,xcolor={table}]{beamer}
+\usepackage[magyar]{babel}
+\usepackage{t1enc}
+\usepackage{hulipsum}
+\usepackage{xcolor}
+\usepackage{amsthm}
+
+\author{Harsányi Balázs}
+\title{Gyakorlat}
+\subtitle{több szó}
+
+\newtheorem{tet}{Tétel}
+
+\AtBeginSection{\frame{\sectionpage \tableofcontents}}
+\usecolortheme{seahorse}
+\usetheme{Boadilla}
+\setbeamercovered{transparent}
+
+\usepackage{hyperref}
+\begin{document}
+
+\begin{frame}[plain]
+\maketitle
+\end{frame}
+
+\section{első fel}
+
+\subsection{elso egy}
+
+\begin{frame}[allowframebreaks]{Írjunk bele}{alcím}
+pár szót\\
+\hulipsum[1-3]
+\only<2>{hulipsum[4]}
+\transboxin<1>
+\end{frame}
+
+\subsection{elso kett}
+
+\begin{frame}{Második frame}{alalcím}
+2. szavak
+\end{frame}
+
+\begin{frame}[fragile]{3. frame}{legalsócím}
+harmadik frame szavai \\
+\verb|\begin{frame}|
+\end{frame}
+
+\section{2. fel}
+
+
+\begin{frame}{CÍME}
+\begin{columns}
+
+\begin{column}{5cm}
+\begin{itemize}
+\item<3-> első 
+\item<4> második
+\item harmadik 
+\end{itemize}
+\begin{enumerate}
+\item<1-2> szám
+\item number
+\item valami
+\end{enumerate}
+\transduration{2}
+\end{column}
+
+\begin{column}{5cm}
+\begin{figure}
+\caption{ez egy kép}
+\includegraphics[scale=0.1]{kutyakep}
+\end{figure}
+\end{column}
+
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{block}{block cím}
+block szövege
+\end{block} \pause
+\begin{alertblock}{alertblock cím}
+példa szavak
+\end{alertblock} \pause \pause
+\begin{exampleblock}{examplebock cím}
+valami írás
+\end{exampleblock}
+\begin{block}{}
+címtelen szöveg
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{tet}
+Theorem környezet
+\end{tet} \pause
+\begin{proof}[Pitagorasz tétel bizonyítása]
+sok háromszög vagy mi
+\end{proof}
+\end{frame}
+
+\subsection{semiverbatim}
+
+\begin{frame}
+\begin{semiverbatim}
+
+\\begin\{itemize\}
+
+\\item szó1
+
+\\item szó2
+
+\\begin\{itemize\}
+
+\\item szó 3
+
+\\item szó4
+
+\\end\{itemize\}
+
+\\end\{itemize\}
+
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\caption{ez egy kép}
+\only<1>{\includegraphics[scale=0.1]{kutyakep}}
+\only<2>{\includegraphics[scale=0.5]{kutyakep2}}
+\end{figure}
+\onslide<2>{szöveg 1 }
+\only<2>{valami 2}
+kitöltés3
+\visible<2>{legyen itt írás}
+\visible<1>{kellet még példa}
+több írott szöveg
+\end{frame}
+
+
+\end{document}
